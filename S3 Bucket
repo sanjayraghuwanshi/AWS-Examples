@@ -1,0 +1,67 @@
+```
+aws s3 ls
+# List all S3 buckets in the account
+
+aws s3 ls s3://bucket-name
+# List objects inside a specific bucket
+
+aws s3 mb s3://bucket-name
+# Create a new S3 bucket
+
+aws s3 rb s3://bucket-name
+# Remove an empty S3 bucket
+
+aws s3 rb s3://bucket-name --force
+# Delete a bucket and all objects inside it
+
+aws s3 cp file.txt s3://bucket-name/
+# Upload a file to a bucket
+
+aws s3 cp s3://bucket-name/file.txt .
+# Download a file from a bucket
+
+aws s3 cp s3://bucket-name/file.txt s3://another-bucket/
+# Copy a file between buckets
+
+aws s3 mv file.txt s3://bucket-name/
+# Move a file to a bucket (upload + delete local file)
+
+aws s3 mv s3://bucket-name/file.txt s3://bucket-name/newfile.txt
+# Rename or move an object inside a bucket
+
+aws s3 rm s3://bucket-name/file.txt
+# Delete a specific object from a bucket
+
+aws s3 rm s3://bucket-name/ --recursive
+# Delete all objects inside a bucket
+
+aws s3 sync local-folder/ s3://bucket-name/
+# Sync a local directory to a bucket
+
+aws s3 sync s3://bucket-name/ local-folder/
+# Sync bucket contents to a local directory
+
+aws s3 sync s3://bucket1/ s3://bucket2/
+# Sync contents between two buckets
+
+aws s3 presign s3://bucket-name/file.txt
+# Generate a temporary download URL for an object
+
+aws s3api list-buckets
+# List all buckets using the S3 API command
+
+aws s3api create-bucket --bucket bucket-name --region region
+# Create a bucket with region specification
+
+aws s3api delete-bucket --bucket bucket-name
+# Delete a bucket using the API command
+
+aws s3api list-objects --bucket bucket-name
+# List objects in a bucket using the S3 API
+
+aws s3api get-bucket-location --bucket bucket-name
+# Check the region where a bucket is located
+
+aws s3api head-bucket --bucket bucket-name
+# Check if a bucket exists and you have access to it
+```
