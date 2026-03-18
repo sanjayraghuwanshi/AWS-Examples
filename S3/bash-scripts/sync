@@ -1,1 +1,9 @@
 #! /usr/bin/env bash
+
+##==sync objects==##
+if [ -z "$1" ]; then
+    echo "There needs to be a bucket name eg. ./sync my-bucket-name"
+    exit 1
+fi
+
+aws s3 sync s3://$1/ /tmp

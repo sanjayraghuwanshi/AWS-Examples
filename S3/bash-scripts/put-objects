@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+##==put objects==##
+
 set -euo pipefail
 
 echo "=== Upload random objects to S3 ==="
@@ -35,7 +37,7 @@ for ((i=1; i<=NUM_FILES; i++)); do
     echo "Uploading $FILE_NAME (${SIZE_KB}KB)..."
 
     # Upload to S3
-    if aws s3 cp "$FILE_PATH" "s3://$BUCKET_NAME/$FILE_NAME"; then
+    if aws s3api put-object --bucket "$BUCKET_NAME" --key "$FILE_NAME" --body "$FILE_PATH"; then
         echo "✅ Uploaded $FILE_NAME"
     else
         echo "❌ Failed to upload $FILE_NAME"
