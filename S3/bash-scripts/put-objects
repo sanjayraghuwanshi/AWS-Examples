@@ -1,1 +1,45 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+echo "=== Upload random objects to S3 ==="
+
+# Check input
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <bucket-name>"
+    exit 1
+fi
+
+BUCKET_NAME="$1"
+
+# where to store files 
+OUTPUT_DIR="/tmp/s3-objects"
+
+# create output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
+# Generate a random number of files (1–10)
+NUM_FILES=$((RANDOM % 10 + 1))
+
+echo "Creating $NUM_FILES files..."
+
+# Correct Bash loop
+for ((i=1; i<=NUM_FILES; i++)); do
+    FILE_NAME="file_${RANDOM}.txt"
+    FILE_PATH="$OUTPUT_DIR/$FILE_NAME"
+
+    # Create random file (1KB–100KB)
+    SIZE_KB=$((RANDOM % 100 + 1))
+    dd if=/dev/urandom of="$FILE_PATH" bs=1K count="$SIZE_KB" status=none
+
+    echo "Uploading $FILE_NAME (${SIZE_KB}KB)..."
+
+    # Upload to S3
+    if aws s3 cp "$FILE_PATH" "s3://$BUCKET_NAME/$FILE_NAME"; then
+        echo "✅ Uploaded $FILE_NAME"
+    else
+        echo "❌ Failed to upload $FILE_NAME"
+    fi
+done
+
+echo "=== Upload complete ==="
