@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+echo "===deploy S3 bucket using CFT==="
+
+STACK_NAME="s3-bucket-stack"
+
+aws cloudformation delete-stack \
+    --stack-name $STACK_NAME \

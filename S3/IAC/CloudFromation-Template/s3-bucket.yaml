@@ -1,0 +1,11 @@
+#Doc - https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-s3-bucket.html
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: A simple CloudFormation template to create an S3 bucket.
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName : yaml-sample-bucket-1234567890
+      # Empty properties section uses all default settings

@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+echo "===deploy S3 bucket using CFT==="
+
+STACK_NAME="s3-bucket-stack"
+TEMPLATE_FILE="s3-bucket.yaml"
+PARAMETERS="ParameterKey=BucketName,ParameterValue=my-unique-bucket-name-123"
+
+aws cloudformation deploy \
+    --template-file s3-bucket.yaml \
+    --stack-name $STACK_NAME \
+    --no-execute-changeset \
+    --parameter-overrides $PARAMETERS \å
