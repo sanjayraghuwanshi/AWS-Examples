@@ -38,10 +38,10 @@ for ((i=1; i<=NUM_FILES; i++)); do
 
     # Upload to S3
     if aws s3api put-object --bucket "$BUCKET_NAME" --key "$FILE_NAME" --body "$FILE_PATH"; then
-        echo "✅ Uploaded $FILE_NAME"
+        echo "Uploaded $FILE_NAME"
     else
-        echo "❌ Failed to upload $FILE_NAME"
+        echo "Failed to upload $FILE_NAME"
     fi
 done
 
-echo "=== Upload complete ==="
+echo "=== Upload complete ==="  
